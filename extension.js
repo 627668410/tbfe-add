@@ -5,13 +5,13 @@ const fs = require("fs");
  */
 function activate(context) {
   let disposable = vscode.commands.registerCommand(
-    "tbfe-add.helloWorld",
+    "tbfe-add.tbfe-add",
     function (uri) {
       const basePath = uri.path;
       const jsPath = `${basePath}/index.js`;
       const cssPath = `${basePath}/index.cssmodule.styl`;
-      fs.writeFileSync(jsPath, "");
       fs.writeFileSync(cssPath, "");
+      fs.writeFileSync(jsPath, "");
     }
   );
 

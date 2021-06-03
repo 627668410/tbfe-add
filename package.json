@@ -10,20 +10,20 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tbfe-add.helloWorld"
+		"onCommand:tbfe-add.tbfe-add"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "tbfe-add.helloWorld",
-				"title": "Hello World"
+				"command": "tbfe-add.tbfe-add",
+				"title": "tbfe-add"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "tbfe-add.helloWorld",
+					"command": "tbfe-add.tbfe-add",
 					"group": "navigation"
 				}
 			]
@@ -46,6 +46,7 @@
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
-		"mkdirp": "^1.0.4"
+		"mkdirp": "^1.0.4",
+		"shelljs": "^0.8.4"
 	}
 }
