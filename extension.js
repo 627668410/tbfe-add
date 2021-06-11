@@ -1,53 +1,42 @@
 const vscode = require("vscode");
 const fs = require("fs");
 const exists = require("fs").existsSync;
+const commandsMap = require("./commandsMap.js");
+
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  let disposable = vscode.commands.registerCommand(
-    "tbfe-add.tbfe-add",
-    function (uri) {
+  commandsMap.forEach((item) => {
+    const obj = vscode.commands.registerCommand(item.commands, function (uri) {
       const basePath = uri.path;
-      createFile(basePath);
-    }
-  );
-
-  context.subscriptions.push(disposable);
+      const fileNameArr = basePath.split("/");
+      const fileName = fileNameArr[fileNameArr.length - 1];
+      createFile(basePath, item.method(fileName));
+    });
+    context.subscriptions.push(obj);
+  });
 }
-function createFile(basePath) {
-  const jsPath = `${basePath}/index.js`;
+function createFile(basePath, content) {
+  createCssFile(basePath);
+  createJsFile(basePath, content);
+}
+function createCssFile(basePath) {
   const cssPath = `${basePath}/index.cssmodule.styl`;
 
-  if (exists(jsPath)) {
-    vscode.window.showInformationMessage("index.js已存在");
-  } else {
-    const fileNameArr = basePath.split("/");
-    const fileName = fileNameArr[fileNameArr.length - 1];
-    const jsContent = `import {compose} from 'lodash/fp';
-import React, {memo} from 'react';
-
-import {connect} from '@common/easy';
-import {errorDecorator} from '@common/ErrorBoundary';
-import './index.cssmodule.styl';
-
-function ${fileName}() {
-  return <div></div>
-}
-export default compose(
-  errorDecorator(),
-  connect(
-    (state, mapState) => ({}),
-    (dispatch, mapActions) => mapActions({})
-  ),
-  memo
-)(${fileName});`;
-    fs.writeFileSync(jsPath, jsContent);
-  }
   if (exists(cssPath)) {
     vscode.window.showInformationMessage("index.cssmodule.styl已存在");
   } else {
     fs.writeFileSync(cssPath, "");
+  }
+}
+function createJsFile(basePath, content) {
+  const jsPath = `${basePath}/index.js`;
+
+  if (exists(jsPath)) {
+    vscode.window.showInformationMessage("index.js已存在");
+  } else {
+    fs.writeFileSync(jsPath, content);
   }
 }
 function deactivate() {}

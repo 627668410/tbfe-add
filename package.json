@@ -10,24 +10,54 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tbfe-add.tbfe-add"
+		"onCommand:tbfe-add.tbfe-add-base",
+		"onCommand:tbfe-add.tbfe-add-list",
+		"onCommand:tbfe-add.tbfe-add-modal"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "tbfe-add.tbfe-add",
-				"title": "tbfe-add"
+				"command": "tbfe-add.tbfe-add-base",
+				"title": "base"
+			},
+			{
+				"command": "tbfe-add.tbfe-add-list",
+				"title": "list"
+			},
+			{
+				"command": "tbfe-add.tbfe-add-modal",
+				"title": "modal"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "tbfe-add.tbfe-add",
+					"group": "navigation",
+					"submenu": "tbfe-add/type"
+				}
+			],
+			"tbfe-add/type": [
+				{
+					"command": "tbfe-add.tbfe-add-base",
+					"group": "navigation"
+				},
+				{
+					"command": "tbfe-add.tbfe-add-list",
+					"group": "navigation"
+				},
+				{
+					"command": "tbfe-add.tbfe-add-modal",
 					"group": "navigation"
 				}
 			]
-		}
+		},
+		"submenus": [
+			{
+				"id": "tbfe-add/type",
+				"label": "tbfe-add"
+			}
+		]
 	},
 	"scripts": {
 		"lint": "eslint .",
