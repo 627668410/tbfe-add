@@ -12,7 +12,7 @@ function activate(context) {
       const basePath = uri.path;
       const fileNameArr = basePath.split("/");
       const fileName = fileNameArr[fileNameArr.length - 1];
-      createFile(basePath, item.method(fileName));
+      createFile(basePath, item.method(fileName, item.config));
     });
     context.subscriptions.push(obj);
   });
