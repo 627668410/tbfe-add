@@ -1,8 +1,9 @@
 const vscode = require("vscode");
 const fs = require("fs");
-const path=require('path');
+const path = require("path");
 const exists = require("fs").existsSync;
 const commandsMap = require("./commandsMap.js");
+const shell = require("shelljs");
 // const findImg = require("./lib/findImg.js");
 
 /**
@@ -29,22 +30,18 @@ function activate(context) {
   // );
   // context.subscriptions.push(findImgObj);
 }
+
 function createFile(basePath, content) {
   createCssFile(basePath);
   createJsFile(basePath, content);
 }
 function createCssFile(basePath) {
-  const cssPath = path.join(basePath,'index.cssmodule.styl');
+  const cssPath = path.join(basePath, "index.cssmodule.styl");
 
   if (exists(cssPath)) {
     vscode.window.showInformationMessage("index.cssmodule.styl已存在");
   } else {
-    try{
-      fs.createWriteStream(cssPath, "", {flag: 'a'});
-
-    }catch(e){
-      vscode.window.showInformationMessage(e);
-    }
+    fs.writeFileSync(cssPath, "");
   }
 }
 function createJsFile(basePath, content) {
@@ -54,6 +51,10 @@ function createJsFile(basePath, content) {
     vscode.window.showInformationMessage("index.js已存在");
   } else {
     fs.writeFileSync(jsPath, content);
+    // vscode.commands.executeCommand(
+    //   "workbench.files.action.showActiveFileInExplorer",
+    //   jsPath
+    // );
   }
 }
 function deactivate() {}
