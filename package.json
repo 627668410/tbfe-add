@@ -2,7 +2,8 @@
 	"name": "tbfe-add",
 	"displayName": "tbfe-add",
 	"description": "code generation",
-	"version": "0.0.1",
+	"publisher": "lujing",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
@@ -12,11 +13,16 @@
 	"activationEvents": [
 		"onCommand:tbfe-add.tbfe-add-base",
 		"onCommand:tbfe-add.tbfe-add-list",
-		"onCommand:tbfe-add.tbfe-add-modal"
+		"onCommand:tbfe-add.tbfe-add-modal",
+		"onCommand:tbfe-add.tbfe-find-img"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "tbfe-add.tbfe-find-img",
+				"title": "tbfe-find-img"
+			},
 			{
 				"command": "tbfe-add.tbfe-add-base",
 				"title": "tbfe-add-base"
@@ -35,28 +41,9 @@
 				{
 					"command": "tbfe-add.tbfe-add-base",
 					"group": "navigation"
-				},
-				{
-					"submenu": "tbfe-add/type"
-				}
-			],
-			"tbfe-add/type": [
-				{
-					"command": "tbfe-add.tbfe-add-list",
-					"group": "navigation"
-				},
-				{
-					"command": "tbfe-add.tbfe-add-modal",
-					"group": "navigation"
 				}
 			]
-		},
-		"submenus": [
-			{
-				"id": "tbfe-add/type",
-				"label": "tbfe-add"
-			}
-		]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",

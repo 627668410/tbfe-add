@@ -2,6 +2,7 @@ const vscode = require("vscode");
 const fs = require("fs");
 const exists = require("fs").existsSync;
 const commandsMap = require("./commandsMap.js");
+// const findImg = require("./lib/findImg.js");
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -12,10 +13,21 @@ function activate(context) {
       const basePath = uri.path;
       const fileNameArr = basePath.split("/");
       const fileName = fileNameArr[fileNameArr.length - 1];
-      createFile(basePath, item.method(fileName, item.config));
+      try {
+        createFile(basePath, item.method(fileName, item.config));
+      } catch (e) {
+        vscode.window.showInformationMessage(e);
+      }
     });
     context.subscriptions.push(obj);
   });
+  // const findImgObj = vscode.commands.registerCommand(
+  //   "tbfe-add.tbfe-find-img",
+  //   function (uri) {
+  //     findImg(uri.path);
+  //   }
+  // );
+  // context.subscriptions.push(findImgObj);
 }
 function createFile(basePath, content) {
   createCssFile(basePath);
