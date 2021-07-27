@@ -51,10 +51,7 @@ function createJsFile(basePath, content) {
     vscode.window.showInformationMessage("index.js已存在");
   } else {
     fs.writeFileSync(jsPath, content);
-    // vscode.commands.executeCommand(
-    //   "workbench.files.action.showActiveFileInExplorer",
-    //   jsPath
-    // );
+    vscode.commands.executeCommand("workbench.action.quickOpen", jsPath);
   }
 }
 function deactivate() {}
