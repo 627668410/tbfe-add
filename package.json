@@ -43,6 +43,15 @@
 					"group": "navigation"
 				}
 			]
+		},
+		"configuration": {
+			"type": "object",
+			"title": "tbfe-add",
+			"properties": {
+				"tbfe-add.content": {
+					"description": "生成的index.js的内容，组件名用${fileName}代替"
+				}
+			}
 		}
 	},
 	"scripts": {
