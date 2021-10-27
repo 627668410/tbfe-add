@@ -3,7 +3,7 @@
 	"displayName": "tbfe-add",
 	"description": "code generation",
 	"publisher": "lujing",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
