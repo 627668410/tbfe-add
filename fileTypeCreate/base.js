@@ -10,7 +10,7 @@ module.exports = function getBaseContent({fileName, uri}) {
 class Settings {
   // settings = vscode.workspace.getConfiguration('tbfe-add');
   getContent({fileName, uri}) {
-    const configFilePath = uri._fsPath.replace(fileName, 'tbfe-add.js');
+    const configFilePath = uri._fsPath.split('/src')[0] + '/tbfe-add.js';
     if (fs.existsSync(configFilePath)) {
       const reg = new RegExp('TbfeAddFileName', 'g');
       return fs.readFileSync(configFilePath).toString().replace(reg, fileName);
