@@ -13,3 +13,19 @@
 - 配置文件：tbfe-add.js
 - 匹配规则：匹配代码中的  TbfeAddFileName  为新建的文件夹内容
 
+## 0.0.8
++ 提供四个命令用来新增文件，（菜单好像没法动态配置）
+  - tbfe-add-page
+  - tbfe-add-components
+  - tbfe-add-reducers
+  - tbfe-add-actions
+
++ 可以在vscode的设置中配置命令生成文件的模板
+```js
+"tbfe-add-page": {
+    "path": "/src/pages/Home", // 根据src下的pages中的Home文件夹生成文件
+    "quickOpen": "/components/index.js" // 生成文件后快速打开/components下的index.js文件
+}
+```
+
++ 匹配代码中的  TbfeAddFileName  为新建的文件夹内容

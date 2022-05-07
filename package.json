@@ -3,7 +3,7 @@
 	"displayName": "tbfe-add",
 	"description": "code generation",
 	"publisher": "lujing",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"engines": {
 		"vscode": "^1.56.0"
 	},
@@ -11,36 +11,48 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tbfe-add.tbfe-add-base",
-		"onCommand:tbfe-add.tbfe-add-list",
-		"onCommand:tbfe-add.tbfe-add-modal",
-		"onCommand:tbfe-add.tbfe-find-img"
+		"onCommand:tbfe-add-page",
+		"onCommand:tbfe-add-components",
+		"onCommand:tbfe-add-reducers",
+		"onCommand:tbfe-add-actions"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "tbfe-add.tbfe-find-img",
-				"title": "tbfe-find-img"
+				"command": "tbfe-add-page",
+				"title": "tbfe-add-page"
 			},
 			{
-				"command": "tbfe-add.tbfe-add-base",
-				"title": "tbfe-add-base"
+				"command": "tbfe-add-components",
+				"title": "tbfe-add-components"
 			},
 			{
-				"command": "tbfe-add.tbfe-add-list",
-				"title": "list"
+				"command": "tbfe-add-reducers",
+				"title": "tbfe-add-reducers"
 			},
 			{
-				"command": "tbfe-add.tbfe-add-modal",
-				"title": "modal"
+				"command": "tbfe-add-actions",
+				"title": "tbfe-add-actions"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "tbfe-add.tbfe-add-base",
-					"group": "navigation"
+					"command": "tbfe-add-page",
+					"group": "navigation@1"
+				},
+				{
+					"command": "tbfe-add-components",
+					"group": "navigation@2"
+				},
+				{
+					"command": "tbfe-add-reducers",
+					"group": "navigation@3"
+				},
+				{
+					"command": "tbfe-add-actions",
+					"group": "navigation@3"
 				}
 			]
 		},
@@ -48,8 +60,17 @@
 			"type": "object",
 			"title": "tbfe-add",
 			"properties": {
-				"tbfe-add.content": {
-					"description": "生成的index.js的内容，组件名用${fileName}代替"
+				"tbfe-add-page": {
+					"description": "生成的page指令的路径，文件夹名称用TbfeAddFileName代替"
+				},
+				"tbfe-add-components": {
+					"description": "生成的components指令的路径，文件夹名称用TbfeAddFileName代替"
+				},
+				"tbfe-add-reducers": {
+					"description": "生成的reducers指令的路径，文件夹名称用TbfeAddFileName代替"
+				},
+				"tbfe-add-actions": {
+					"description": "生成的actions指令的路径，文件夹名称用TbfeAddFileName代替"
 				}
 			}
 		}
