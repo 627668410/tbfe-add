@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const exists = require('fs').existsSync;
 const commandsMap = require('./commandsMap.js');
+const _ = require('lodash');
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -63,10 +64,21 @@ function readFileDir({readPath, fileName, writePath, isRoot}) {
   }
 }
 
+const hanldeFileName = {
+  TbfeAddFileName: (name) => _.upperFirst(_.camelCase(name)),
+  tbfeAddFileName: (name) => _.camelCase(name),
+  tbfeaddfilename: (name) => _.toLower(name),
+  TBFEADDFILENAME: (name) => _.toUpper(name),
+  'tbfe-add-file-name': (name) => _.kebabCase(name),
+  tbfe_add_file_name: (name) => _.snakeCase(name),
+};
 function createFile({readPath, fileName, writePath}) {
-  const regStr = 'TbfeAddFileName';
-  const reg = new RegExp(regStr, 'g');
-  const content = fs.readFileSync(readPath).toString().replace(reg, fileName);
+  let content = fs.readFileSync(readPath).toString();
+  Object.keys(hanldeFileName).forEach((key) => {
+    const reg = new RegExp(key, 'g');
+    content = content.replace(reg, hanldeFileName[key](fileName));
+  });
+
   if (exists(writePath)) {
     messgae(`${writePath}文件已存在`);
   } else {

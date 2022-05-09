@@ -29,3 +29,14 @@
 ```
 
 + 匹配代码中的  TbfeAddFileName  为新建的文件夹内容
+
+## 0.0.9
+暴露五种文件名的格式去替换
+```
+TbfeAddFileName: (name) => _.upperFirst(_.camelCase(name)),
+tbfeAddFileName: (name) => _.camelCase(name),
+tbfeaddfilename: (name) => _.toLower(name),
+TBFEADDFILENAME: (name) => _.toUpper(name),
+'tbfe-add-file-name': (name) => _.kebabCase(name),
+tbfe_add_file_name: (name) => _.snakeCase(name),
+```
